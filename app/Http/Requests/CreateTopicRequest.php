@@ -28,7 +28,7 @@ class CreateTopicRequest extends FormRequest
             // 'title' => 'required|max:50'
             'title' => ['required', 'max:50'],
             'author' => ['max:20'],
-            'text' => ['max:200'],
+            'text' => ['required', 'max:200'],
         ];
     }
 }

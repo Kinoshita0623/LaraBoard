@@ -14,11 +14,15 @@ use App\Http\Controllers\TopicController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
+
+Route::get('/', [TopicController::class, 'topicList']);
 
 //作成ページを返す
 Route::get('/create', [TopicController::class, 'new']);
 
 Route::post('/create', [TopicController::class, 'create']);
+
+Route::get('/topics/{topicId}', [TopicController::class, 'show'])->name('topics.show');
