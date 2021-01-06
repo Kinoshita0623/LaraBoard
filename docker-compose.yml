@@ -3,7 +3,7 @@ version: "3"
 services:
   nginx:
     image: nginx
-    container_name: diffweb_nginx
+    container_name: laraboard_nginx
     ports:
       - "8080:80"
     volumes:
@@ -12,7 +12,7 @@ services:
     depends_on:
       - php
   php:
-    container_name: diffweb_php
+    container_name: laraboard_php
     user: ${user}
     build:
       context: .
@@ -24,7 +24,7 @@ services:
   # MySQL
   db:
     image: mysql:5.7
-    container_name: diffweb_mysql
+    container_name: laraboard_mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: test
@@ -34,8 +34,3 @@ services:
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     expose:
       - "3306"
-  redis:
-    container_name: diffweb_redis
-    image: redis:6.0.9
-    ports:
-      - "6379:6379"
