@@ -17,7 +17,7 @@ class CreateTopicsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title', 50);
-            $table->string('author', 10);
+            $table->string('author', 20);
             $table->string('text', 200);
         });
     }

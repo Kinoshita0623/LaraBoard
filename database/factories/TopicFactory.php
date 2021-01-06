@@ -22,7 +22,7 @@ class TopicFactory extends Factory
     public function definition()
     {
         return [
-            'author' => $this->faker->name,
+            'author' => $this->faker->userName,
             'title' => $this->faker->title,
             'text' => $this->faker->text
         ];
