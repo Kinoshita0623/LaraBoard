@@ -28,4 +28,37 @@ class CommentModelTest extends TestCase
         Assert::assertEquals($comment->id, $topic->comments()->first()->id);
 
     }
+
+    public function testCommentから依存先のTopicを取得できるか()
+    {
+        $topic = Topic::factory()->create();
+        $comment = Comment::factory()->make();
+        $topic->comments()->save($comment);
+        Assert::assertEquals($topic->id, $comment->topic()->first()->id);
+    }
+
+    public function testCommentへCommentをすることができるのか()
+    {
+        $topic = Topic::factory()->create();
+        $comment = Comment::factory()->make();
+        $topic->comments()->save($comment);
+
+        $commentToReply = Comment::factory()-make();
+        $commentToReply->replyTo()->associate($comment);
+        Assert::assertNotNull($comment->comments()->first());
+        Assert::assertEquals($commentToReply->id ,$comment->comments()->first()->id);
+    }
+
+    public function testCommentへreplyメソッドを使用してCommentすることができるか()
+    {
+        $topic = Topic::factory()->create();
+        $comment = Comment::factory()->make();
+        $topic->comments()->save($comment);
+
+        $commentToReply = Comment::factory()->make();
+        $comment->reply($commentToReply);
+        Assert::assertNotNull($comment->comments()->first());
+        Assert::assertEquals($commentToReply->id ,$comment->comments()->first()->id);
+
+    }
 }
