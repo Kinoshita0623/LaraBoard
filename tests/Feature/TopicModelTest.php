@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Topic;
 use PHPUnit\Framework\Assert;
+use App\Models\Comment;
 
 
 class TopicModelTest extends TestCase
@@ -32,5 +33,13 @@ class TopicModelTest extends TestCase
         Assert::assertNotNull($topic);
     }
 
+    public function testReplyメソッドでCommentをすることができるのか()
+    {
+        $topic = Topic::factory()->create();
+        $comment = Comment::factory()->make();
+
+        $topic->reply($comment);
+        Assert::assertEquals($comment->id, $topic->comments()->first()->id);
+    }
     
 }
