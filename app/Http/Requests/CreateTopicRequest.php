@@ -26,9 +26,9 @@ class CreateTopicRequest extends FormRequest
         return [
             //hoge
             // 'title' => 'required|max:50'
-            'title' => ['required', 'max:50']
-            'author' => ['max:20']
-            'text' => ['max:200']
+            'title' => ['required', 'max:50'],
+            'author' => ['max:20'],
+            'text' => ['max:200'],
         ];
     }
 }
