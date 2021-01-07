@@ -25,7 +25,7 @@ class TopicController extends Controller
             'author' => $req->input('author'),
             'text' => $req->input('text'),
         ]);
-        return $topic;
+        return redirect('/');
     }
 
     public function topicList()
@@ -57,7 +57,7 @@ class TopicController extends Controller
             'text' => $req->input('text'),
         ]);
 
-        return $comment;
+        return redirect()->route('topics.show', [ 'topicId' => $topicId ]);
     }
 
 }
