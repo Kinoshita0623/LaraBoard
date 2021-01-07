@@ -10,7 +10,14 @@
         <p>{{ $topic->text }}</p>
 
         <p>コメント</p>
-        <p>{{ $comments }}</p>
+        <ul>
+            @foreach ($comments as $comment)
+            <li>
+                {{ $comment->author }}
+                {{ $comment->text }}
+            </li>
+            @endforeach
+        </ul>
 
         <form method="post">
             @csrf
@@ -18,6 +25,7 @@
                 <input type="text" name="text" />
                 <input type="submit" />
         </form>
+
         <a href="/">戻る</a>
     </body>
 </html>
