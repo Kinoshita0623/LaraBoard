@@ -5,6 +5,9 @@
         <title>掲示板</title>
     </head>
     <body>
+
+        <a href="/create">新規作成</a>
+
         <ul>
             @foreach ($topics as $topic)
                 <li>

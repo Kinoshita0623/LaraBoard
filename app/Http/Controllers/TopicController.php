@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Topic;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateTopicRequest;
+use App\Http\Requests\CreateCommentRequest;
 
 class TopicController extends Controller
 {
@@ -17,7 +19,6 @@ class TopicController extends Controller
     //ポスト先
     public function create(CreateTopicRequest $req)
     {
-        $req->input('title');
 
         $topic = Topic::create([
             'title' => $req->input('title'),
@@ -38,7 +39,25 @@ class TopicController extends Controller
     {
         $topic = Topic::findOrFail($topicId);
 
-        return view("show",['topic' => $topic]);
+        $comments = $topic->comments()->get();
+
+        return view("show",['topic' => $topic,'comments' => $comments]);
+    }
+
+    public function comment(CreateCommentRequest $req, $topicId)
+    {
+        // topic をtopicIdで取得する
+
+        // $topic->comments()->create([])
+
+        $topic = Topic::findOrFail($topicId);
+
+        $comment = $topic->comments()->create([
+            'author' => $req->input('author'),
+            'text' => $req->input('text'),
+        ]);
+
+        return $comment;
     }
 
 }

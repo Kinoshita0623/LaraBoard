@@ -14,6 +14,7 @@
                 @endforeach
             </ul>
         </div>
+
         <form method="post">
             @csrf
                 <input type="text" name="title" />
