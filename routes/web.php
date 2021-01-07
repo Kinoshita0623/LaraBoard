@@ -26,3 +26,5 @@ Route::get('/create', [TopicController::class, 'new']);
 Route::post('/create', [TopicController::class, 'create']);
 
 Route::get('/topics/{topicId}', [TopicController::class, 'show'])->name('topics.show');
+
+Route::post('/topics/{topicId}', [TopicController::class, 'comment']);

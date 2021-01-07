@@ -18,6 +18,8 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
             $table->string('author', 20);
             $table->string('text', 200);
+            
+            //外部キー制約
             $table->foreignId('topic_id')->constrained('topics');
         });
     }
